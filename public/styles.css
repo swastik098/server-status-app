@@ -1,0 +1,161 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:300,300italic");
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css");
+
+:root {
+  --cGood: #2eb35a;
+  --cAlert: #d22c32;
+}
+
+* {
+  user-select: none;
+  cursor: default;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+  color: #c1c6cb;
+  background-color: #15202e;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Lato", sans-serif;
+  padding-top: 80px; /* Space for the fixed header */
+}
+
+body::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #110d0d;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.dashboard {
+  display: block;
+  max-width: 1024px;
+  width: 100%;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  font-family: "Lato", sans-serif;
+  text-transform: uppercase;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  width: 60%;
+  /* background-color: #15202e; */
+  padding: 20px;
+  z-index: 1000;
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+}
+
+.dashboard-title {
+  flex: 1;
+  font-size: 2.5rem;
+}
+
+.dashboard-clock {
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-clock-digital {
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+
+.server-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 20px;
+  justify-items: center;
+  width: 100%;
+}
+
+.server {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+}
+
+.server-icon {
+  display: inline-block;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.server-details {
+  flex: 1;
+  list-style: none;
+}
+
+.server-details li {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #7e8794;
+}
+
+.server-details .data {
+  font-weight: 600;
+  color: #c1c6cb;
+}
+
+.server-details .signal {
+  color: var(--cGood);
+}
+
+.server-details .signal::before {
+  content: "";
+  display: inline-block;
+  width: 0.6rem;
+  height: 0.6rem;
+  background-color: currentColor;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  margin-top: -0.2rem;
+  vertical-align: middle;
+}
+
+.server.has-failed .signal {
+  color: var(--cAlert);
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
