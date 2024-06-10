@@ -4,7 +4,7 @@ const servers = [
     adr: "https://thinkzone.co/thinkzone",
   },
   { name: "Thinkzone Test", adr: "https://thinkzone.in.net/thinkzone" },
-  { name: "PRakshak", adr: "https://tatvagyan.in/" },
+  { name: "Prakshak", adr: "https://tatvagyan.in/" },
   { name: "Test Server", adr: "http://example.edu" },
 ];
 
