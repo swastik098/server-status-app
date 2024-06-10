@@ -2,10 +2,23 @@ const servers = [
   {
     name: "Thinkzone Production",
     adr: "https://thinkzone.co/thinkzone",
+    icon: "fa fa-globe",
   },
-  { name: "Prakshak production", adr: "https://tatvagyan.co.in/" },
-  { name: "Thinkzone Test", adr: "https://thinkzone.in.net/thinkzone" },
-  { name: "Prakshak Test", adr: "https://tatvagyan.in/" },
+  {
+    name: "Prakshak Production",
+    adr: "https://tatvagyan.co.in/",
+    icon: "fa fa-globe",
+  },
+  {
+    name: "Thinkzone Test",
+    adr: "https://thinkzone.in.net/thinkzone",
+    icon: "fa fa-server",
+  },
+  {
+    name: "Prakshak Test",
+    adr: "https://tatvagyan.in/",
+    icon: "fa fa-server",
+  },
 ];
 
 let isFirstFetch = true;
@@ -69,7 +82,7 @@ function renderServerList() {
     const serverDiv = document.createElement("div");
     serverDiv.className = `server ${server.status ? "" : "has-failed"}`;
     serverDiv.innerHTML = `
-      <span class="server-icon"><i class="fa fa-globe"></i></span>
+      <span class="server-icon"><i class="${server.icon}"></i></span>
       <ul class="server-details">
         <li><span class="data">${server.name}</span></li>
         <li><span class="data signal">${
@@ -81,7 +94,6 @@ function renderServerList() {
     serverList.appendChild(serverDiv);
   });
 }
-
 function updateClock() {
   const now = new Date();
   const hours = String(now.getHours()).padStart(2, "0");
