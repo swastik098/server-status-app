@@ -3,13 +3,38 @@ const servers = [
     name: "Thinkzone Production",
     adr: "https://thinkzone.co/thinkzone",
   },
+  { name: "Prakshak production", adr: "https://tatvagyan.co.in/" },
   { name: "Thinkzone Test", adr: "https://thinkzone.in.net/thinkzone" },
-  { name: "Prakshak", adr: "https://tatvagyan.in/" },
-  { name: "Test Server", adr: "http://example.edu" },
+  { name: "Prakshak Test", adr: "https://tatvagyan.in/" },
 ];
 
-function fetchServerStatus() {
+let isFirstFetch = true;
+async function fetchServerStatus() {
+  if (isFirstFetch) {
+    displayLoader();
+    isFirstFetch = false;
+  }
+
+  const statusResults = [];
+  for (let server of servers) {
+    try {
+      const response = await fetch(server?.adr);
+      statusResults.push({ url: server?.adr, status: response?.status });
+    } catch (error) {
+      statusResults.push({ url: server?.adr, error: error?.message });
+    }
+  }
+
+  // console.log(statusResults);
+
+  servers.forEach((server, index) => {
+    server.status = statusResults[index].status === 200;
+  });
+
+  renderServerList();
+
   // displayLoader();
+  /*
   fetch("/status", {
     method: "POST",
     headers: {
@@ -29,6 +54,7 @@ function fetchServerStatus() {
     .catch((error) => {
       console.error("Error fetching server status:", error);
     });
+    */
 }
 
 function displayLoader() {
@@ -43,7 +69,7 @@ function renderServerList() {
     const serverDiv = document.createElement("div");
     serverDiv.className = `server ${server.status ? "" : "has-failed"}`;
     serverDiv.innerHTML = `
-      <span class="server-icon"><i class="fa fa-server"></i></span>
+      <span class="server-icon"><i class="fa fa-globe"></i></span>
       <ul class="server-details">
         <li><span class="data">${server.name}</span></li>
         <li><span class="data signal">${
